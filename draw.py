@@ -5,28 +5,32 @@ def draw_line( x0, y0, x1, y1, screen, color ):
     B = x0 - x1
     if ( B > 0 ):
         #3456
-        if ( A > 0 ):
-            #34
+        newx = x1
+        newy = y1
+        x1 = x0
+        y1 = y0
+        x0 = newx
+        y0 = newy
+        A = y1 - y0
+        B = x0 - x1
+        
+    #1278
+    if ( A > 0 ):
+        #12
+        if ( A < -1*B ):
+            #1
+            octant1( x0, y0, x1, y1, screen, color )
         else:
-            #56
+            #2
+            octant2( x0, y0, x1, y1, screen, color )
     else:
-        #1278
-        if ( A > 0 ):
-            #12
-            if ( A < -1*B ):
-                #1
-                octant1( x0, y0, x1, y1, screen, color )
-            else:
-                #2
-                octant2( x0, y0, x1, y1, screen, color )
+        #78
+        if ( -1*A < -1*B ):
+            #8
+            octant8( x0, y0, x1, y1, screen, color )
         else:
-            #78
-            if ( -1*A < -1*B ):
-                #8
-                octant8( x0, y0, x1, y1, screen, color )
-            else:
-                #7
-                octant7( x0, y0, x1, y1, screen, color )
+            #7
+            octant7( x0, y0, x1, y1, screen, color )
 
 
 def octant1( x0, y0, x1, y1, screen, color ):
